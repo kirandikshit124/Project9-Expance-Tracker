@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { default: mongoose } = require('mongoose');
+const mongodbURL = "mongodb+srv://kirandikshit124_db_user:dikshit@projects.3gr107d.mongodb.net/expense-tracker?appName=Projects"
 dotenv.config();
 
 const app = express();
@@ -17,8 +19,13 @@ app.get('/', (req, res, next) => {
 });
 
 // DB connection
-
 const PORT=3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
+mongoose.connect(mongodbURL)
+.then(() => {
+  console.log('Connected to MongoDB');
+  app.listen(PORT, () => {
+    console.log(`Server is running on port http://localhost:${PORT}`);
+  });
+}).catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
 });
