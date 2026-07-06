@@ -137,14 +137,14 @@ exports.updateUserProfile = async (req, res) => {
         });
     }   
     try {
-        const existingUser = await User.findOne({ email, _id: { $ne: req.user.userId } });
+        const existingUser = await User.findOne({ email, _id: { $ne: req.user._id } });
         if(existingUser) {
             return res.status(400).json({
                 success: false,
                 message: "Email already in use"
             });
         }
-        const user = await User.findByIdAndUpdate(req.user.userId, { name, email }, { new: true, runValidators: true, select: "name email" });
+        const user = await User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true, select: "name email" });
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully",
@@ -164,11 +164,11 @@ exports.changePassword = async (req, res) => {
     if(!currentPassword || !newPassword || newPassword.length < 8) {
         return res.status(400).json({
             success: false,
-            message: "Please provide a valid current password"
+            message: "Please provide a valid password"
         });
     }
     try {
-        const user = await User.findById(req.user.userId).select("password");
+        const user = await User.findById(req.user._id).select("password");
         if(!user) {
             return res.status(404).json({
                 success: false,
