@@ -6,6 +6,7 @@ const { default: mongoose } = require('mongoose');
 const mongodbURL = "mongodb+srv://kirandikshit124_db_user:dikshit@projects.3gr107d.mongodb.net/expense-tracker?appName=Projects"
 dotenv.config();
 const authRouter = require('./routes/authRouter');
+const incomeRouter = require('./routes/incomeRouter');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/user', authRouter);
+app.use('/api/income', incomeRouter);
 
 app.get('/', (req, res, next) => {
   res.send('Welcome to the Expense Tracker API');
