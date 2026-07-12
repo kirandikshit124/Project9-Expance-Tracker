@@ -7,6 +7,7 @@ const mongodbURL = "mongodb+srv://kirandikshit124_db_user:dikshit@projects.3gr10
 dotenv.config();
 const authRouter = require('./routes/authRouter');
 const incomeRouter = require('./routes/incomeRouter');
+const expenceRouter = require('./routes/expenceRouter');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/user', authRouter);
 app.use('/api/income', incomeRouter);
+app.use('/api/expence', expenceRouter);
 
 app.get('/', (req, res, next) => {
   res.send('Welcome to the Expense Tracker API');

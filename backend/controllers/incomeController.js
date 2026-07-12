@@ -52,9 +52,9 @@ exports.updateIncome = async (req, res) => {
     const { description, amount } = req.body;
     try{
         const updatedIncome = await Income.findOneAndUpdate(
-            { _id: id, userId },  // Ensure the income belongs to the logged-in user
+            { _id: id, userId },  // This line means that we are looking for an income with the given id and userId, ensuring that the income belongs to the logged-in user.
             { description, amount },
-            { new: true }
+            { new: true }  // This option ensures that the updated document is returned.
         );
         if (!updatedIncome) {
             return res.status(404).json({
