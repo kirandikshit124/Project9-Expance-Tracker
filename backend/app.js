@@ -8,6 +8,7 @@ dotenv.config();
 const authRouter = require('./routes/authRouter');
 const incomeRouter = require('./routes/incomeRouter');
 const expenceRouter = require('./routes/expenceRouter');
+const dashboardRouter = require('./routes/dashboardRouter');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/user', authRouter);
 app.use('/api/income', incomeRouter);
 app.use('/api/expence', expenceRouter);
+app.use('/api/dashboard', dashboardRouter);
 
 app.get('/', (req, res, next) => {
   res.send('Welcome to the Expense Tracker API');
