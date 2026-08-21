@@ -34,8 +34,8 @@ export default function Login() {
         }
     };
     return (
-        <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-            <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8">
+        <div className="min-h-screen bg-[#e8e4e1] flex items-center justify-center">
+            <div className="bg-[#F3E9DD] w-full max-w-md rounded-2xl shadow-xl p-8">
                 <h1 className="text-3xl font-bold text-center mb-8">
                     Expense Tracker
                 </h1>
@@ -48,17 +48,17 @@ export default function Login() {
                         placeholder="Email"
                         value={form.email}
                         onChange={handleChange}
-                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
+                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#6B4E3D]" />
                     <input
                         type="password"
                         name="password"
                         placeholder="Password"
                         value={form.password}
                         onChange={handleChange}
-                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
+                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#6B4E3D]" />
                     <button
                         disabled={loading}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3 font-semibold transition">
+                        className="w-full bg-[#6B4E3D] hover:bg-[#5A3F2E] text-white rounded-lg py-3 font-semibold transition">
                         {loading ? "Logging In..." : "Login"}
                     </button>
                 </form>
@@ -66,7 +66,7 @@ export default function Login() {
                     Don't have an account?
                     <Link
                         to="/register"
-                        className="text-indigo-600 font-semibold ml-2">
+                        className="text-[#6B4E3D] hover:text-[#5A3F2E] font-semibold ml-2">
                         Register
                     </Link>
                 </p>

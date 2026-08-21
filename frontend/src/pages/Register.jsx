@@ -36,8 +36,8 @@ export default function Register() {
         }
     };
     return (
-        <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-            <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+        <div className="min-h-screen bg-[#e8e4e1] flex items-center justify-center">
+            <div className="bg-[#F3E9DD] shadow-xl rounded-2xl p-8 w-full max-w-md">
                 <h1 className="text-3xl font-bold text-center mb-8">
                     Create Account
                 </h1>
@@ -49,24 +49,24 @@ export default function Register() {
                         placeholder="Full Name"
                         value={form.name}
                         onChange={handleChange}
-                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500"/>
+                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#6B4E3D]"/>
                     <input
                         type="email"
                         name="email"
                         placeholder="Email"
                         value={form.email}
                         onChange={handleChange}
-                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500"/>
+                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#6B4E3D]"/>
                     <input
                         type="password"
                         name="password"
                         placeholder="Password"
                         value={form.password}
                         onChange={handleChange}
-                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500"/>
+                        className="w-full border rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#6B4E3D]"/>
                     <button
                         disabled={loading}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3 font-semibold">
+                        className="w-full bg-[#6B4E3D] hover:bg-[#5A3F2E] text-white rounded-lg py-3 font-semibold">
                         {loading ? "Creating..." : "Register"}
                     </button>
                 </form>
@@ -74,7 +74,7 @@ export default function Register() {
                     Already have an account?
                     <Link
                         to="/login"
-                        className="ml-2 text-indigo-600 font-semibold">
+                        className="ml-2 text-[#6B4E3D] hover:text-[#5A3F2E] font-semibold">
                         Login
                     </Link>
                 </p>
