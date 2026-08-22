@@ -40,7 +40,7 @@ export default function Income() {
         load();
     };
     return (
-        <div className="flex bg-slate-100 min-h-screen">
+        <div className="flex bg-[#e8e4e1] min-h-screen">
             <Sidebar />
             <div className="ml-64 flex-1">
                 <Navbar />
@@ -54,7 +54,7 @@ export default function Income() {
                                 setEdit(null);
                                 setOpen(true);
                             }}
-                            className="bg-[#e4d5bc] text-black px-5 py-2 rounded-lg">
+                            className="bg-[#6B4E3D] text-white px-5 py-2 rounded-lg">
                             + Add Income
                         </button>
                     </div>

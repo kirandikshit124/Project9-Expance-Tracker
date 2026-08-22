@@ -19,11 +19,11 @@ export default function Dashboard() {
         loadDashboard();
     }, []);
     return (
-        <div className="flex bg-slate-100">
+        <div className="flex bg-[#e8e4e1]">
             <Sidebar className="flex-shrink-0" />
             <div className="flex-1 ml-64">
                 <Navbar />
-                    <div className="mt-8">
+                    <div className="m-8">
                         {error && <p className="px-6 text-red-600">{error}</p>}
                         <TransactionTable transactions={dashboard?.recentTransaction ?? []} />
                     </div>
