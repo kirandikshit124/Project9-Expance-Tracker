@@ -6,6 +6,7 @@ import { FaMoneyBillWave, FaWallet, FaPiggyBank, FaPercent } from "react-icons/f
 import TransactionTable from "../components/TransactionTable";
 import { getDashboard } from "../services/dashboardService";
 import ExpensePieChart from "../components/ExpensePieChart";
+import IncomeExpenseBarChart from "../components/IncomeExpenseBarChart";
 
 export default function Dashboard() {
     const [dashboard, setDashboard] = useState(null);
@@ -56,6 +57,9 @@ export default function Dashboard() {
                     <div className="grid lg:grid-cols-2 gap-6 mt-8">
                         <ExpensePieChart
                             data={dashboard.expenseDistribution} />
+                        <IncomeExpenseBarChart
+                            income={dashboard.monthlyIncome}
+                            expense={dashboard.monthlyExpence} />
                     </div>
                     <div className="m-8">
                         {error && <p className="px-6 text-red-600">{error}</p>}
