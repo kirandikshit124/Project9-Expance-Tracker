@@ -48,11 +48,11 @@ exports.getAllExpences = async (req, res) => {
 exports.updateExpence = async (req, res) => {
     const { id } = req.params;
     const userId = req.user._id;
-    const { description, amount } = req.body;
+    const { description, amount, category, date } = req.body;
     try{
         const updatedExpence = await Expence.findOneAndUpdate(
             { _id: id, userId },  // This line means that we are looking for an expense with the given id and userId, ensuring that the expense belongs to the logged-in user.
-            { description, amount },
+            { description, amount, category, date: new Date(date) },
             { new: true }   // This option ensures that the updated document is returned.
         );
         if (!updatedExpence) {

@@ -49,11 +49,11 @@ exports.getAllIncomes = async (req, res) => {
 exports.updateIncome = async (req, res) => {
     const { id } = req.params;
     const userId = req.user._id;
-    const { description, amount } = req.body;
+    const { description, amount, category, date } = req.body;
     try{
         const updatedIncome = await Income.findOneAndUpdate(
             { _id: id, userId },  // This line means that we are looking for an income with the given id and userId, ensuring that the income belongs to the logged-in user.
-            { description, amount },
+            { description, amount, category, date: new Date(date) },
             { new: true }  // This option ensures that the updated document is returned.
         );
         if (!updatedIncome) {

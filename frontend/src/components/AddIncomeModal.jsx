@@ -9,7 +9,12 @@ export default function AddIncomeModal({ open, onClose, onSubmit, editData }) {
     });
     useEffect(() => {
         if (editData) {
-            setForm(editData);
+            setForm({
+                description: editData.description,
+                amount: editData.amount,
+                category: editData.category,
+                date: editData.date ? editData.date.split("T")[0] : "",
+            });
         } else {
             setForm({
                 description: "",
