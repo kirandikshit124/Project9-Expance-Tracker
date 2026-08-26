@@ -10,6 +10,7 @@ export default function Income() {
     const [list, setList] = useState([]);
     const [open, setOpen] = useState(false);
     const [edit, setEdit] = useState(null);
+    const [sidebarOpen, setSidebarOpen] = useState(false)
     const load = async () => {
         const data = await getAllIncome();
         setList(data);
@@ -41,9 +42,10 @@ export default function Income() {
     };
     return (
         <div className="flex bg-[#e8e4e1] min-h-screen">
-            <Sidebar />
-            <div className="ml-64 flex-1">
-                <Navbar />
+            <Sidebar isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)} />
+            <div className="md:ml-64 flex-1 min-w-0">
+                <Navbar onMenuClick={() => setSidebarOpen(true)} />
                 <div className="p-8">
                     <div className="flex justify-between mb-6">
                         <h1 className="text-3xl font-bold">

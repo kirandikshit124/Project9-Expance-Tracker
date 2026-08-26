@@ -2,10 +2,13 @@ import { FaChartPie, FaWallet, FaMoneyBill, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
     const { user } = useAuth();
-    return (
-        <aside className="fixed top-0 left-0 w-64 bg-[#6B4E3D] text-white h-screen p-6">
+    return (<>
+        {isOpen && (
+            <div className={"fixed inset-0 bg-black/50 bg-opacity-50 z-40 md:hidden"} onClick={onClose}></div>
+        )}
+        <aside className={`fixed top-0 left-0 z-50 w-64 bg-[#6B4E3D] text-white h-screen p-6 ${isOpen ? "block" : "hidden"} md:block`}>
             <h1 className="text-2xl font-bold mb-10">
                 Expense Tracker
             </h1>
@@ -38,5 +41,5 @@ export default function Sidebar() {
                 <span> {user?.name} </span>
             </footer>
         </aside>
-    );
+    </>);
 }

@@ -10,7 +10,8 @@ import IncomeExpenseBarChart from "../components/IncomeExpenseBarChart";
 
 export default function Dashboard() {
     const [dashboard, setDashboard] = useState(null);
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     async function loadDashboard() {
         try {
             const data = await getDashboard();
@@ -23,15 +24,25 @@ export default function Dashboard() {
         loadDashboard();
     }, []);
     if (!dashboard) {
-        return <div className="min-h-screen bg-[#e8e4e1] p-8">{error || "Loading dashboard..."}</div>;
+        return <div>
+                <div className="animate-pulse space-y-4">
+                    <div className="h-20 bg-gray-200 rounded" />
+                    <div className="h-32 bg-gray-200 rounded m-9" />
+                    <div className="h-92 bg-gray-200 rounded m-9" />
+                    <div className="h-12 bg-gray-200 rounded m-9" />
+                    <div className="h-222 bg-gray-200 rounded m-9" />
+                </div>
+            </div>
     }
     return (
         <div className="flex bg-[#e8e4e1]">
-            <Sidebar className="flex-shrink-0" />
-            <div className="flex-1 ml-64">
-                <Navbar />
+            <Sidebar className="flex-shrink-0" 
+            isOpen={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}/>
+            <div className="flex-1 min-w-0 w-full md:ml-64">
+                <Navbar onMenuClick={() => setSidebarOpen(true)}/>
                     <div className="p-8">
-                    <div className="grid grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <SummaryCard
                             title="Income"
                             value={dashboard.monthlyIncome}
@@ -62,7 +73,7 @@ export default function Dashboard() {
                             expense={dashboard.monthlyExpence} />
                     </div>
                     <div className="m-8">
-                        {error && <p className="px-6 text-red-600">{error}</p>}
+                        {/* {error && <p className="px-6 text-red-600">{error}</p>} */}
                         <TransactionTable transactions={dashboard?.recentTransaction ?? []} />
                     </div>
                 </div>
