@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
-const JWT_SECRET = "your_jwt_secret_key"; // Replace with your own secret key
+const JWT_SECRET = process.env.JWT_SECRET
 
 // ---------------------this middleware function will be used to protect routes that require authentication-----------------------
 const authMiddleware = async (req, res, next) => {
