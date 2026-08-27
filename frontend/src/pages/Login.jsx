@@ -34,8 +34,8 @@ export default function Login() {
         }
     };
     return (
-        <div className="min-h-screen bg-[#e8e4e1] flex items-center justify-center">
-            <div className="bg-[#F3E9DD] w-full max-w-md rounded-2xl shadow-xl p-8">
+        <div className="min-h-screen bg-[#F3E9DD] flex items-center justify-center">
+            <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8 m-6">
                 <h1 className="text-3xl font-bold text-center mb-8">
                     Expense Tracker
                 </h1>
