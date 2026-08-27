@@ -26,7 +26,10 @@ const expenceSchema = new mongoose.Schema({
         type: String,
         default: 'expense',
     }
-})
+},
+{
+    timestamps: true,
+});
 
 const expenceModel = mongoose.model('Expense', expenceSchema);
 module.exports = expenceModel;

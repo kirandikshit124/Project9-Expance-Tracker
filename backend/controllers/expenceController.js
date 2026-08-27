@@ -1,6 +1,6 @@
 const Expence = require('../models/expenceModel');
 const XLSX = require('xlsx');
-const getDateRange = require('../utils/datefilter').getDateRange;
+const getDateRange = require('../utils/dateFilter').getDateRange;
 
 exports.addExpence = async (req, res) => {
     const { description, amount, category, date } = req.body;
@@ -53,7 +53,7 @@ exports.updateExpence = async (req, res) => {
         const updatedExpence = await Expence.findOneAndUpdate(
             { _id: id, userId },  // This line means that we are looking for an expense with the given id and userId, ensuring that the expense belongs to the logged-in user.
             { description, amount, category, date: new Date(date) },
-            { new: true }   // This option ensures that the updated document is returned.
+            { new: true, runValidators: true }   // This option ensures that the updated document is returned.
         );
         if (!updatedExpence) {
             return res.status(404).json({

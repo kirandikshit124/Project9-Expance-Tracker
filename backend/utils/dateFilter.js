@@ -7,8 +7,9 @@ const getDateRange = (range) => {
             startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             break;
         case 'weekly':
-            const firstDayOfWeek = now.getDate() - now.getDay();
-            startDate = new Date(now.setData(firstDayOfWeek));
+            startDate = new Date(now);
+            startDate.setDate(now.getDate() - now.getDay());
+            startDate.setHours(0, 0, 0, 0);
             break;
         case 'monthly':
             startDate = new Date(now.getFullYear(), now.getMonth(), 1);

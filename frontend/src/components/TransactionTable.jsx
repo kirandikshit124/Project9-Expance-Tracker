@@ -1,18 +1,28 @@
 import { useState } from "react";
 
-export default function TransactionTable({ transactions }) {
+export default function TransactionTable({ transactions, range, onRangeChange }) {
     const [search, setSearch] = useState("");
     const filteredData = transactions.filter(item =>
         item.description.toLowerCase().includes(search.toLowerCase()) || item.category.toLowerCase().includes(search.toLowerCase())
     ).sort((a, b) => new Date(b.date) - new Date(a.date));
     return (
         <>
+            <div className="flex sm:flex-row gap-3 mb-4">
             <input
                 type="text"
                 placeholder="Search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="border rounded-lg px-4 py-2 w-full mb-4 outline-none" />
+                className="border rounded-lg px-4 py-2 w-full outline-none" />
+            <select
+                value={range}
+                onChange={(e) => onRangeChange(e.target.value)}
+                className="border rounded-lg outline-none sm:w-40">
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+            </div>
             <div className="bg-white rounded-xl shadow p-5">
                 <h2 className="font-bold text-xl mb-4">
                     Recent Transactions

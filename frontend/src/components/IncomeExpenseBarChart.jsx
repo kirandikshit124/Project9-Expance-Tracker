@@ -1,9 +1,10 @@
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Bar } from "recharts";
 
-export default function IncomeExpenseBarChart({ income, expense }) {
+export default function IncomeExpenseBarChart({ income, expense, range="monthly" }) {
+    const rangeLabel = range.charAt(0).toUpperCase() + range.slice(1);
     const data = [
         {
-            name: "This Month",
+            name: `This ${rangeLabel}`,
             Income: income,
             Expense: expense,
         }

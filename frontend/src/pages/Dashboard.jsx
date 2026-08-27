@@ -10,11 +10,11 @@ import IncomeExpenseBarChart from "../components/IncomeExpenseBarChart";
 
 export default function Dashboard() {
     const [dashboard, setDashboard] = useState(null);
-    // const [error, setError] = useState(null);
+    const [range, setRange] = useState("monthly");
     const [sidebarOpen, setSidebarOpen] = useState(false);
     async function loadDashboard() {
         try {
-            const data = await getDashboard();
+            const data = await getDashboard(range);
             setDashboard(data);
         } catch (err) {
             setError(err.response?.data?.message || "Unable to load dashboard");
@@ -22,7 +22,7 @@ export default function Dashboard() {
     }
     useEffect(() => {
         loadDashboard();
-    }, []);
+    }, [range]);
     if (!dashboard) {
         return <div>
                 <div className="animate-pulse space-y-4">
@@ -70,11 +70,14 @@ export default function Dashboard() {
                             data={dashboard.expenseDistribution} />
                         <IncomeExpenseBarChart
                             income={dashboard.monthlyIncome}
-                            expense={dashboard.monthlyExpence} />
+                            expense={dashboard.monthlyExpence}
+                            range={range} />
                     </div>
                     <div className="mt-8">
                         {/* {error && <p className="px-6 text-red-600">{error}</p>} */}
-                        <TransactionTable transactions={dashboard?.recentTransaction ?? []} />
+                        <TransactionTable transactions={dashboard?.recentTransaction ?? []} 
+                            range={range}
+                            onRangeChange={setRange}/>
                     </div>
                 </div>
             </div>
