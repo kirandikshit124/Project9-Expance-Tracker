@@ -15,22 +15,26 @@ export default function Sidebar({ isOpen, onClose }) {
             <nav className="space-y-5">
                 <NavLink
                     to="/dashboard"
-                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}
+                    onClick={onClose}>
                     <FaChartPie /> Dashboard
                 </NavLink>
                 <NavLink
                     to="/income"
-                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}
+                    onClick={onClose}>
                     <FaMoneyBill /> Income
                 </NavLink>
                 <NavLink
                     to="/expense"
-                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}
+                    onClick={onClose}>
                     <FaWallet /> Expense
                 </NavLink>
                 <NavLink
                     to="/profile"
-                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}
+                    onClick={onClose}>
                     <FaUser /> Profile
                 </NavLink>
             </nav>
