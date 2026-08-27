@@ -40,7 +40,7 @@ export default function Dashboard() {
             isOpen={sidebarOpen}
             onClose={() => setSidebarOpen(false)}/>
             <div className="flex-1 min-w-0 w-full md:ml-64">
-                <Navbar onMenuClick={() => setSidebarOpen(true)}/>
+                <Navbar onMenuClick={() => setSidebarOpen(true)} />
                     <div className="p-8">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <SummaryCard
@@ -72,7 +72,7 @@ export default function Dashboard() {
                             income={dashboard.monthlyIncome}
                             expense={dashboard.monthlyExpence} />
                     </div>
-                    <div className="m-8">
+                    <div className="mt-8">
                         {/* {error && <p className="px-6 text-red-600">{error}</p>} */}
                         <TransactionTable transactions={dashboard?.recentTransaction ?? []} />
                     </div>

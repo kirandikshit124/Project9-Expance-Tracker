@@ -13,7 +13,7 @@ export default function Navbar({ onMenuClick }) {
         navigate("/login");
     }
     return (
-        <header className="bg-white shadow h-20 flex justify-between items-center px-8">
+        <header className="sticky top-0 z-30 bg-white shadow h-20 flex justify-between items-center px-8">
             <button className="md:hidden flex items-center gap-2"
                 onClick={onMenuClick} >
                 <IoMdMenu size={24} />

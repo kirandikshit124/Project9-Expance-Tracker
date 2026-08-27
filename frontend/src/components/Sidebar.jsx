@@ -1,5 +1,5 @@
 import { FaChartPie, FaWallet, FaMoneyBill, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Sidebar({ isOpen, onClose }) {
@@ -13,32 +13,34 @@ export default function Sidebar({ isOpen, onClose }) {
                 Expense Tracker
             </h1>
             <nav className="space-y-5">
-                <Link
+                <NavLink
                     to="/dashboard"
-                    className="flex gap-3 items-center transition duration-300 hover:font-bold">
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
                     <FaChartPie /> Dashboard
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                     to="/income"
-                    className="flex gap-3 items-center transition duration-300 hover:font-bold">
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
                     <FaMoneyBill /> Income
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                     to="/expense"
-                    className="flex gap-3 items-center transition duration-300 hover:font-bold">
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
                     <FaWallet /> Expense
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                     to="/profile"
-                    className="flex gap-3 items-center transition duration-300 hover:font-bold">
+                    className={({ isActive }) => `flex gap-3 items-center rounded-lg px-3 py-2 transition duration-300 hover:font-bold ${isActive ? "font-bold" : ""}`}>
                     <FaUser /> Profile
-                </Link>
+                </NavLink>
             </nav>
             <footer className="absolute bottom-6 left-6 text-m text-white flex justify-between items-center gap-2">
+                <Link to="/profile" className="flex space-x-2">
                 <span className="bg-[#f3e9dd] text-xs text-[#6B4E3D] rounded-full w-6 h-6 flex items-center justify-center">
                     {user?.name.charAt(0)}
                 </span>
                 <span> {user?.name} </span>
+                </Link>
             </footer>
         </aside>
     </>);
