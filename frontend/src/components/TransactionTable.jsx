@@ -12,52 +12,86 @@ export default function TransactionTable({ transactions }) {
                 placeholder="Search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="border rounded-lg px-4 py-2 w-full mb-4 outline-none"/>
+                className="border rounded-lg px-4 py-2 w-full mb-4 outline-none" />
             <div className="bg-white rounded-xl shadow p-5">
                 <h2 className="font-bold text-xl mb-4">
                     Recent Transactions
                 </h2>
-                <table className="w-full">
-                    <thead>
-                        <tr className="border-b">
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Type</th>
+                {
+                    filteredData.length === 0 ? (
+                        <tr>
+                            <td colSpan="4" className="text-center py-8 text-gray-500">
+                                No Transactions Yet...
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            filteredData.length === 0 ? (
-                                <tr>
-                                    <td colSpan="4" className="text-center py-8 text-gray-500">
-                                        No Transactions Yet...
-                                    </td>
-                                </tr>
-                            ) : (filteredData.map((item) => (
-                                <tr key={item._id} className="border-b h-14">
-                                    <td className="text-center px-4 py-2">{item.description}</td>
-                                    <td className="text-center px-4 py-2">{item.category}</td>
-                                    <td className="text-center px-4 py-2">
-                                        ₹ {item.amount}
-                                    </td>
-                                    <td className="text-center px-4 py-2">
-                                        {new Date(item.date).toLocaleDateString()}
-                                    </td>
-                                    <td className="text-center px-4 py-2">
-                                        <span className={`text-center px-3 py-1 rounded-full
+                    ) : (<>
+                        <div className="hidden md:block">
+                            <table className="w-full">
+                                <thead>
+                                    <tr className="border-b">
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredData.map((item) => (
+                                        <tr key={item._id} className="border-b h-14">
+                                            <td className="text-center px-4 py-2">{item.description}</td>
+                                            <td className="text-center px-4 py-2">{item.category}</td>
+                                            <td className="text-center px-4 py-2">
+                                                ₹ {item.amount}
+                                            </td>
+                                            <td className="text-center px-4 py-2">
+                                                {new Date(item.date).toLocaleDateString()}
+                                            </td>
+                                            <td className="text-center px-4 py-2">
+                                                <span className={`text-center px-3 py-1 rounded-full
                                         ${item.type === "income"
+                                                        ? "bg-[#e4d5bc] text-black"
+                                                        : "bg-[#a68665] text-white"}`}>
+                                                    {item.type}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="md:hidden space-y-4">
+                            {filteredData.map((item) => (
+                                <div key={item._id} className="border rounded-lg p-4 shadow-sm">
+                                    <div className="flex justify-between items-start gap-3">
+                                        <h3 className="font-semibold text-base">
+                                            {item.description}
+                                        </h3>
+                                        <span
+                                            className={`shrink-0 px-3 py-1 rounded-full text-sm ${item.type === "income"
                                                 ? "bg-[#e4d5bc] text-black"
-                                                : "bg-[#a68665] text-white"}`}>
+                                                : "bg-[#a68665] text-white"
+                                                }`}>
                                             {item.type}
                                         </span>
-                                    </td>
-                                </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
+                                    </div>
+                                    <p className="text-gray-500 text-sm mt-3">
+                                        Category: {item.category}
+                                    </p>
+                                    <p className="text-gray-500 text-sm mt-1">
+                                        Date:{" "}
+                                        {new Date(
+                                            item.date
+                                        ).toLocaleDateString()}
+                                    </p>
+                                    <p className="font-bold text-lg mt-3">
+                                        ₹ {item.amount}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                    )}
             </div>
         </>
     );
