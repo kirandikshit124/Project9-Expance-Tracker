@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const validator = require("validator");
 
-const JWT_SECRET = "your_jwt_secret_key"; // Replace with your own secret key
-const TOKEN_EXPIRES = "24h"; 
+const JWT_SECRET = process.env.JWT_SECRET;
+const TOKEN_EXPIRES = "4d"; 
 const createToken = (userId) => {
     return jwt.sign({ userId }, JWT_SECRET, { expiresIn: TOKEN_EXPIRES });
 }

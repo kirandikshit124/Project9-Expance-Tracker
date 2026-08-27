@@ -12,6 +12,7 @@ export default function Dashboard() {
     const [dashboard, setDashboard] = useState(null);
     const [range, setRange] = useState("monthly");
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [error, setError] = useState("");
     async function loadDashboard() {
         try {
             const data = await getDashboard(range);

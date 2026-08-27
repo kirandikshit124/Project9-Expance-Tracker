@@ -29,11 +29,9 @@ export default function TransactionTable({ transactions, range, onRangeChange })
                 </h2>
                 {
                     filteredData.length === 0 ? (
-                        <tr>
-                            <td colSpan="4" className="text-center py-8 text-gray-500">
-                                No Transactions Yet...
-                            </td>
-                        </tr>
+                        <div className="text-center py-8 text-gray-500">
+                            No Transactions Yet...
+                        </div>
                     ) : (<>
                         <div className="hidden md:block">
                             <table className="w-full">
