@@ -5,7 +5,7 @@ const { default: mongoose } = require('mongoose');
 dotenv.config();
 const authRouter = require('./routes/authRouter');
 const incomeRouter = require('./routes/incomeRouter');
-const expenceRouter = require('./routes/expenceRouter');
+const expenseRouter = require('./routes/expenceRouter');
 const dashboardRouter = require('./routes/dashboardRouter');
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/user', authRouter);
 app.use('/api/income', incomeRouter);
-app.use('/api/expence', expenceRouter);
+app.use('/api/expense', expenseRouter);
 app.use('/api/dashboard', dashboardRouter);
 
 app.get('/', (req, res, next) => {

@@ -51,7 +51,7 @@ export default function Dashboard() {
                             color="text-green-600" />
                         <SummaryCard
                             title="Expense"
-                            value={dashboard.monthlyExpence}
+                            value={dashboard.monthlyExpense}
                             icon={<FaWallet />}
                             color="text-red-500" />
                         <SummaryCard
@@ -71,7 +71,7 @@ export default function Dashboard() {
                             data={dashboard.expenseDistribution} />
                         <IncomeExpenseBarChart
                             income={dashboard.monthlyIncome}
-                            expense={dashboard.monthlyExpence}
+                            expense={dashboard.monthlyExpense}
                             range={range} />
                     </div>
                     <div className="mt-8">

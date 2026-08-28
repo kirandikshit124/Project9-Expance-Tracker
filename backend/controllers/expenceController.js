@@ -1,8 +1,8 @@
-const Expence = require('../models/expenceModel');
+const expense = require('../models/expenceModel');
 const XLSX = require('xlsx');
 const getDateRange = require('../utils/dateFilter').getDateRange;
 
-exports.addExpence = async (req, res) => {
+exports.addexpense = async (req, res) => {
     const { description, amount, category, date } = req.body;
     const userId = req.user._id;
     try{
@@ -12,14 +12,14 @@ exports.addExpence = async (req, res) => {
                 message: "All fields are required"
             });
         }
-        const newExpence = new Expence({
+        const newexpense = new expense({
             userId,
             description,
             amount,
             category,
             date: new Date(date),
         });
-        await newExpence.save();
+        await newexpense.save();
         res.status(201).json({
             success: true,
             message: "Expense added successfully"
@@ -32,11 +32,11 @@ exports.addExpence = async (req, res) => {
     }
 }
 
-exports.getAllExpences = async (req, res) => {
+exports.getAllexpenses = async (req, res) => {
     const userId = req.user._id;
     try{
-        const expences = await Expence.find({ userId }).sort({ date: -1 });
-        res.json(expences);
+        const expenses = await expense.find({ userId }).sort({ date: -1 });
+        res.json(expenses);
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -45,17 +45,17 @@ exports.getAllExpences = async (req, res) => {
     }
 }
 
-exports.updateExpence = async (req, res) => {
+exports.updateexpense = async (req, res) => {
     const { id } = req.params;
     const userId = req.user._id;
     const { description, amount, category, date } = req.body;
     try{
-        const updatedExpence = await Expence.findOneAndUpdate(
+        const updatedexpense = await expense.findOneAndUpdate(
             { _id: id, userId },  // This line means that we are looking for an expense with the given id and userId, ensuring that the expense belongs to the logged-in user.
             { description, amount, category, date: new Date(date) },
             { new: true, runValidators: true }   // This option ensures that the updated document is returned.
         );
-        if (!updatedExpence) {
+        if (!updatedexpense) {
             return res.status(404).json({
                 success: false,
                 message: "Expense not found"
@@ -64,7 +64,7 @@ exports.updateExpence = async (req, res) => {
         res.json({
             success: true,
             message: "Expense updated successfully",
-            expense: updatedExpence
+            expense: updatedexpense
         });
     } catch (error) {
         res.status(500).json({
@@ -74,10 +74,10 @@ exports.updateExpence = async (req, res) => {
     }
 }
 
-exports.deleteExpence = async (req, res) => {
+exports.deleteexpense = async (req, res) => {
     try{
-        const deletedExpence = await Expence.findOneAndDelete({ _id: req.params.id });
-        if (!deletedExpence) {
+        const deletedexpense = await expense.findOneAndDelete({ _id: req.params.id });
+        if (!deletedexpense) {
             return res.status(404).json({
                 success: false,
                 message: "Expense not found"
@@ -95,21 +95,21 @@ exports.deleteExpence = async (req, res) => {
     }
 }
 
-exports.downloadExpencesExcel = async (req, res) => {
+exports.downloadexpensesExcel = async (req, res) => {
     const userId = req.user._id;
     try{
-        const expences = await Expence.find({ userId }).sort({ date: -1 });
-        const plainData = expences.map(expence => ({
-            description: expence.description,
-            amount: expence.amount,
-            category: expence.category,
-            date: new Date(expence.date).toLocaleDateString(),
+        const expenses = await expense.find({ userId }).sort({ date: -1 });
+        const plainData = expenses.map(expense => ({
+            description: expense.description,
+            amount: expense.amount,
+            category: expense.category,
+            date: new Date(expense.date).toLocaleDateString(),
         }))
         const workSheet = XLSX.utils.json_to_sheet(plainData);
         const workBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workBook, workSheet, "Expences");
-        XLSX.writeFile(workBook, "ExpencesData.xlsx");
-        res.download("ExpencesData.xlsx")
+        XLSX.utils.book_append_sheet(workBook, workSheet, "expenses");
+        XLSX.writeFile(workBook, "expensesData.xlsx");
+        res.download("expensesData.xlsx")
     }
     catch (error) {
         return res.status(500).json({
@@ -119,13 +119,13 @@ exports.downloadExpencesExcel = async (req, res) => {
     }
 }
 
-exports.getExpencesByDateRange = async (req, res) => {
+exports.getexpensesByDateRange = async (req, res) => {
     try{
         const userId = req.user._id;
         const { range='monthly' } = req.query;
         const { startDate, endDate } = getDateRange(range);
 
-        const expences = await Expence.find({
+        const expenses = await expense.find({
             userId,
             date: {
                 $gte: startDate,
@@ -133,16 +133,16 @@ exports.getExpencesByDateRange = async (req, res) => {
             }
         }).sort({ date: -1 });
 
-        const totalExpence = expences.reduce((total, expence) => total + expence.amount, 0);
-        const averageExpence = expences.length > 0 ? totalExpence / expences.length : 0;
-        const numberOfTransactions = expences.length;
-        const recentTransactions = expences.slice(0, 5); // Get the 5 most recent transactions
+        const totalexpense = expenses.reduce((total, expense) => total + expense.amount, 0);
+        const averageexpense = expenses.length > 0 ? totalexpense / expenses.length : 0;
+        const numberOfTransactions = expenses.length;
+        const recentTransactions = expenses.slice(0, 5); // Get the 5 most recent transactions
 
         return res.status(200).json({
             success: true,
             data: {
-                totalExpence,
-                averageExpence,
+                totalexpense,
+                averageexpense,
                 numberOfTransactions,
                 recentTransactions,
                 range,
