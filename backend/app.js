@@ -5,13 +5,13 @@ const { default: mongoose } = require('mongoose');
 dotenv.config();
 const authRouter = require('./routes/authRouter');
 const incomeRouter = require('./routes/incomeRouter');
-const expenseRouter = require('./routes/expenceRouter');
+const expenseRouter = require('./routes/expenseRouter');
 const dashboardRouter = require('./routes/dashboardRouter');
 
 const app = express();
 
 // Middleware
-app.use(cors({}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
