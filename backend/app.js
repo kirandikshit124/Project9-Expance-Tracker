@@ -5,7 +5,7 @@ const { default: mongoose } = require('mongoose');
 dotenv.config();
 const authRouter = require('./routes/authRouter');
 const incomeRouter = require('./routes/incomeRouter');
-const expenseRouter = require('./routes/expenseRouter');
+const expenseRouter = require('./routes/expenceRouter');
 const dashboardRouter = require('./routes/dashboardRouter');
 
 const app = express();
