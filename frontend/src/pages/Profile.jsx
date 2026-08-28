@@ -104,15 +104,12 @@ export default function Profile() {
         }
     };
     if (loading) {
-        return (
-            <div className="min-h-screen bg-slate-100">
-                <div className="flex items-center justify-center h-screen">
-                    <p className="text-gray-500">
-                        Loading profile...
-                    </p>
-                </div>
+        return <div>
+            <div className="animate-pulse space-y-4">
+                <div className="h-25 bg-gray-200 rounded" />
+                <div className="h-200 md:h-110 bg-gray-200 rounded mt-30" />
             </div>
-        );
+        </div>;
     }
     return (
         <div className="min-h-screen bg-[#e8e4e1]">
